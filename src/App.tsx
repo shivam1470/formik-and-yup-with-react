@@ -5,6 +5,7 @@ import { string, object } from "yup";
 import { useFormik } from "formik";
 const { TextArea } = Input;
 
+// Initial value provided to formik
 const initialValue = {
   firstName: "",
   lastName: "",
@@ -14,6 +15,7 @@ const initialValue = {
   description: "",
 };
 
+// Validation with the help of yup library
 const validationSchema = object().shape({
   firstName: string().required("Required"),
   lastName: string().required("Required"),
@@ -24,11 +26,14 @@ const validationSchema = object().shape({
 });
 
 function App() {
+  // Getting value, error, change handler and submit handler
   const { values, errors, handleChange, handleSubmit } = useFormik({
     initialValues: initialValue,
     validationSchema: validationSchema,
     validateOnBlur: false,
-    onSubmit: async (value) => {},
+    onSubmit: async (value) => {
+      alert(JSON.stringify(value));
+    },
   });
 
   return (
